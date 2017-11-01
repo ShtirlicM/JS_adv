@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header>
+        <div class="head">
+            <h2>Online Shop for Interior</h2>
+        </div>
+    </header>
+
+    <div class="block iconR cart">
+        <div class="header">Корзина</div>
+        <div class="content-cart">
+            <p class="">У вас в корзині: <span class="content-empty">Пусто!</span></p>
+            <table class="table-cart">
+                <tr class="">
+                    <td>№</td>
+                    <td>Назва товару</td>
+                    <td>К-сть</td>
+                    <td>Ціна</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td><button>+</button><button>-</button></td>
+                </tr>
+            </table>
+        </div>
+        <button class="buttonCart reset iconL" type="reset">Очистити корзину</button>
+        <button class="buttonCart buy iconR" type="button">Оформити</button>
+    </div>
+
+    <article class="body">
+        <div class="">
+            <div class="icon iconL">
+                <img class="imgProduct" alt="" src="pic/01.jpg" title="">
+                <h4 class="nameProduct">Style 1</h4>
+                <p>Some text about product. Some text about product. Some text about product. Some text about product. Some text about product.Some text about product.</p>
+                <span class="product-price">100$</span>
+                <button type="submit" onclick="buythis(event)" class="buttonBuy">Купити</button>
+            </div>
+        </div>
+        <div class="icon iconR">
+            <img class="imgProduct" alt="" src="pic/24478--10058559-m549x500.jpg" title="">
+            <h4 class="nameProduct">Style 2</h4>
+            <p>Some text about product. Some text about product. Some text about product. Some text about product. Some text about product.Some text about product.</p>
+            <span class="product-price">200$</span>
+            <button type="submit" onclick="buythis(event)" class="buttonBuy">Купити</button>
+        </div>
+
+        <div class="icon iconL">
+            <img class="imgProduct" alt="" src="pic/24478--10058595-m549x500.jpg" title="">
+            <h4 class="nameProduct">Style 3</h4>
+            <p>Some text about product. Some text about product. Some text about product. Some text about product. Some text about product.Some text about product.</p>
+            <span class="product-price">300$</span>
+            <button type="submit" onclick="buythis(event)" class="buttonBuy">Купити</button>
+        </div>
+
+        <div class="icon iconR">
+            <img class="imgProduct" alt="" src="pic/Escalera1893_.jpg" title="">
+            <h4 class="nameProduct">Style 4</h4>
+            <p>Some text about product. Some text about product. Some text about product. Some text about product. Some text about product.Some text about product.</p>
+            <span class="product-price">400$</span>
+            <button type="submit" onclick="buythis(event)" class="buttonBuy">Купити</button>
+        </div>
+    </article>
+
+    <script>
+        var buttonBuy = document.querySelectorAll('.buttonBuy'),
+            contentEmpty = document.querySelector('.content-empty'),
+            contentCart = document.querySelector('.content-cart'),
+            nameProduct = document.querySelectorAll('.nameProduct'),
+            cartSum = document.createElement('p');
+        contentCart.appendChild(cartSum);
+
+        cartSum.innerHTML = 'Загальна сума: <span class="allPrice" >0$</span>';
+
+        function buythis(event) {
+            var newItem = document.createElement('p'),
+                newPrice = document.createElement('span'),
+                productCart = event.target.parentNode,
+                ProductTitle = productCart.querySelector('.nameProduct');
+            ProductPrice = productCart.querySelector('.product-price').innerHTML;
+
+            //            contentEmpty.style.display = "none";
+            newItem.classList.add("inCart");
+            newPrice.classList.add("sumPrice");
+            newItem.innerHTML = ProductTitle.innerHTML + " - ";
+            newPrice.innerHTML = ProductPrice;
+            contentCart.appendChild(newItem);
+            newItem.appendChild(newPrice);
+
+//            console.log(newItem);
+            //            console.log(event.target);
+
+
+            checkingProruct();
+            sumCartObj();
+            sumPriceCart();
+        }
+
+        function sumCartObj() {
+            var sum = document.querySelectorAll('.content-cart .inCart');
+            if (2 > sum.length > 0) {
+                contentEmpty.innerHTML = sum.length + " Об'єкт";
+            } else if (5 > sum.length) {
+                contentEmpty.innerHTML = sum.length + " Об'єкти";
+            } else if (sum.length >= 5) {
+                contentEmpty.innerHTML = sum.length + " Об'єктів";
+            } else {
+                contentEmpty.innerHTML = "Пусто!";
+            }
+        }
+
+        function sumPriceCart() {
+            var sumPrice = contentCart.querySelectorAll('.content-cart .sumPrice'),
+                allPrice = contentCart.querySelector('.allPrice');
+
+            if (sumPrice.length > 0) {
+                var sum = 0;
+                for (var i = 0; i < sumPrice.length; i++) {
+                    sumPriceA = sumPrice[i].innerHTML.slice(0, 3);
+                    sum = sum + +sumPriceA;
+                    //                    console.log( sum );
+                    allPrice.innerHTML = sum + '$';
+                }
+            } else {
+                console.log("щось пішло не так")
+                allPrice.innerHTML = '0$';
+            }
+        }
+
+        function checkingProruct() {
+            var check = document.querySelectorAll('.content-cart .inCart');
+            for (var i = 0; i < check.length; i++) {
+                var idName = check[i].innerHTML;
+                if (idName == idName) {
+                    console.log( check[i] );
+                    console.log( 'одинкакові' );
+                    console.log( idName );
+//                    check[i].style.display = 'none';
+                } else if (idName !== idName){
+                console.log('різні обєкти')
+                }
+            }
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>

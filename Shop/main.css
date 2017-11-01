@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Trebuchet MS;
+    background: #c4c4c4;
+}
+
+.head {
+    padding: 10px;
+    text-align: center;
+    height: 80px;
+    background: black;
+    color: #c4c4c4;
+    font-size: 2em;
+}
+
+h2 {
+    border: 1px solid #c4c4c4;
+}
+
+.body {
+    margin: auto;
+    width: 55%;
+    background: snow;
+    overflow: hidden;
+}
+
+.imgProduct {
+    border: 5px solid #4b4a4a;
+    height: 200px;
+    width: 240px;
+    border-radius: 5%;
+}
+
+.icon {
+    padding: 10px;
+    width: 44%;
+    background: #a5a5a5;
+    border: 5px solid #4b4a4a;
+    border-radius: 5%;
+    text-align: center;
+    margin: 3%;
+}
+
+.iconL {
+    float: left;
+}
+
+.iconR {
+    float: right;
+}
+
+h4,
+span {
+    font-size: 1.1em;
+}
+
+.body p {
+    padding: 0 40px;
+}
+
+.buttonBuy {
+    margin: 10px;
+    padding: 8px 10px;
+    border: 2px solid black;
+    border-radius: 10%;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.buttonBuy:hover {
+  background-color: #7b7a7a;
+}
+
+.block{
+    margin:  45px 45px 45px 0;
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 7%;
+    overflow: hidden;
+}
+
+.block .header{
+    padding: 10px 20px;
+    background-color: #606060;
+    color: snow;
+}
+
+.block .content-cart {
+    padding: 10px 20px;
+    text-align: left;
+/*    background-color: red;*/
+}
+.buttonCart {
+    margin: 15px;
+    height: 50px;
+    width: 110px;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5%;
+    font-weight: bold;
+    font-size: 1em;
+}
+.table-cart {
+    width: 255px;
+    border: 2px solid red;
+    font-size: 1em;
+}
+.table-cart button {
+    font-size: 1.3em;
+    width: 20px;
+    margin: 1px;
+    border: 1px solid red;
+    border-radius: 25%;
+}
