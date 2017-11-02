@@ -109,10 +109,28 @@ span {
     border: 2px solid red;
     font-size: 1em;
 }
-.table-cart button {
-    font-size: 1.3em;
+.table-cart button, .bnNewP, .bnNewM {
+    font-size: 1.1em;
     width: 20px;
     margin: 1px;
-    border: 1px solid red;
+    border: 1px solid gray;
     border-radius: 25%;
+    margin:  2px 5px;
+}
+
+.bnRem {
+    font-size: 0.5em;
+    font-weight: 800;
+    width: 20px;
+    margin: 1px;
+    border: 1px solid black;
+    border-radius: 25%;
+    margin:  3px 3px;
+    color: #ff0000;
+}
+
+.inCart > span {
+/*    border: 1px solid red;*/
+    margin: 4px;
+/*    padding: 1px;*/
 }

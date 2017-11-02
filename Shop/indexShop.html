@@ -18,7 +18,7 @@
         <div class="header">Корзина</div>
         <div class="content-cart">
             <p class="">У вас в корзині: <span class="content-empty">Пусто!</span></p>
-<!--
+            <!--
             <table class="table-cart">
                 <tr class="">
                     <td>№</td>
@@ -77,49 +77,187 @@
     </article>
 
     <script>
-        var buttonBuy = document.querySelectorAll('.buttonBuy'),
-            contentEmpty = document.querySelector('.content-empty'),
-            contentCart = document.querySelector('.content-cart'),
-            nameProduct = document.querySelectorAll('.nameProduct'),
-            cartSum = document.createElement('p');
+        var d = document,
+            buttonBuy = d.querySelectorAll('.buttonBuy'),
+            contentEmpty = d.querySelector('.content-empty'),
+            contentCart = d.querySelector('.content-cart'),
+            nameProduct = d.querySelectorAll('.nameProduct'),
+            cartSum = d.createElement('p');
+
         contentCart.appendChild(cartSum);
 
         cartSum.innerHTML = 'Загальна сума: <span class="allPrice" >0$</span>';
 
         function buythis(event) {
-            var newItem = document.createElement('p'),
-                newPrice = document.createElement('span'),
+            var inCartDiv = d.createElement('div'),
+                newItem = d.createElement('span'),
+                newPrice = d.createElement('span'),
                 productCart = event.target.parentNode,
-                ProductTitle = productCart.querySelector('.nameProduct');
-            ProductPrice = productCart.querySelector('.product-price').innerHTML;
+                ProductTitle = productCart.querySelector('.nameProduct'),
+                ProductPrice = productCart.querySelector('.product-price').innerHTML,
+                bnPlus = d.querySelector('.button-class');
 
             //            contentEmpty.style.display = "none";
-            newItem.classList.add("inCart");
+            inCartDiv.classList.add("inCart");
+            newItem.classList.add("nameProduct");
             newPrice.classList.add("sumPrice");
-            newItem.innerHTML = ProductTitle.innerHTML + " - ";
+            //            newItem.innerHTML = ProductTitle.innerHTML + " - ";
+            newItem.innerHTML = ProductTitle.innerHTML;
             newPrice.innerHTML = ProductPrice;
-            contentCart.appendChild(newItem);
-            newItem.appendChild(newPrice);
 
-//            console.log(newItem);
-            //            console.log(event.target);
+            contentCart.appendChild(inCartDiv);
+            inCartDiv.appendChild(newItem);
+            inCartDiv.appendChild(newPrice);
+
+            //     створюєм нові кнопки і щоб можна змінити кількість
+            //            console.log(ProductTitle.textContent);
+
+            var bnPlus1 = d.createElement('button'),
+                bnMinus1 = d.createElement('button'),
+                counterNum = d.createElement('span'),
+                removeProduct = d.createElement('button'),
+                ButtonDiv = d.createElement('span');
+
+            bnPlus1.innerHTML = '+';
+            bnMinus1.innerHTML = '-';
+            removeProduct.innerHTML = 'X';
+            counterNum.innerHTML = '1';
+
+            removeProduct.classList.add("bnRem");
+            counterNum.classList.add("counterN");
+            bnPlus1.classList.add("bnNewP");
+            bnPlus1.classList.add("button-class");
+            bnMinus1.classList.add("bnNewM");
+            bnMinus1.classList.add("button-class");
+            ButtonDiv.classList.add("counter");
+
+            ButtonDiv.appendChild(removeProduct);
+            ButtonDiv.appendChild(bnPlus1);
+            ButtonDiv.appendChild(counterNum);
+            ButtonDiv.appendChild(bnMinus1);
+            inCartDiv.appendChild(ButtonDiv);
+
+            bnPlus1.setAttribute('onclick', "bnPlus(event)");
+            bnMinus1.setAttribute('onclick', "bnPlus(event)");
+            //            bnMinus1.setAttribute('onclick', "bnMinus(event)");
+            removeProduct.setAttribute('onclick', "removeProd(event)");
+
+            //            відсліткуваи клік
+            //                console.log(event.target);
+
+            //            if (ProductTitle.textContent == "Style 1") {
+            //                var firtsObj = ProductTitle.textContent;
+            //                
+            //                var count = 0;
+            ////                for  (var i=0; i
+            ////                if(counterNum.textContent + count ) {
+            //                    
+            //                count +=1;
+            //                counterNum.innerHTML = count;
+            ////                               }
+            //                console.log(counterNum.innerHTML);
+            //                console.log(ProductTitle.textContent + " " + +counterNum + "+1");
+            //            }
+
+            //                        checkingProruct();
 
 
-//            checkingProruct();
+            sumCartObj();
+            sumPriceCart();
+        }
+
+
+        function bnPlus(event) {
+            //            console.log('this wokr Plus');
+
+            var inC = event.target.parentNode.parentNode,
+                count = inC.querySelector('.counterN'),
+                sumPriceOne = inC.querySelector('.sumPrice'),
+                pricePr = inC.querySelector('.sumPrice'),
+                namePr = inC.querySelector('.nameProduct').textContent,
+                item = count.textContent,
+                buttonPlus = inC.querySelector('.bnNewP'),
+                buttonMinus = inC.querySelector('.bnNewM'),
+                priceOne = sumPriceOne.innerHTML.slice(0, 3),
+                sumAll = pricePr.innerHTML.slice(0, 3);
+
+            buttonPlus.onclick = function() {
+                item = +item + 1;
+                count.innerHTML = item;
+
+                sumAll = +sumAll + +priceOne;
+                pricePr.innerHTML = sumAll + '$';
+                 sumCartObj();
+            sumPriceCart();
+            }
+
+            buttonMinus.onclick = function() {
+                item = +item - 1;
+                count.innerHTML = item;
+                if (item == 0) {
+                    removeProd();
+                }
+                sumAll = +sumAll - +priceOne;
+                pricePr.innerHTML = sumAll + '$';
+                 sumCartObj();
+            sumPriceCart();
+            }
+
+//        var allItem = allItem + +item,
+//            allObjCart = contentEmpty.length;
+//
+//                        console.log(allObjCart);
+//                        console.log(item);
+//                        console.log(allItem);
+//            //            console.log(sumPriceA);
+            //            console.log(inC);
+            //            console.log(inC.children);
+            //            console.log(namePr);
+            //                        console.log(pricePr);
+            //            console.log(count);
+
+            sumCartObj();
+            sumPriceCart();
+        }
+
+        //        працює функція
+        //         function bnPlus(event) {
+        ////            console.log('this wokr Plus');
+        //            var inC = event.target.parentNode.parentNode,
+        //                count = inC.querySelector('.counterN'),
+        //                pricePr = inC.querySelector('.sumPrice').textContent,
+        //                namePr = inC.querySelector('.nameProduct').textContent,
+        //                item = count.textContent
+        //                item = +item + 1;
+        //                count.innerHTML = item;
+        //        }
+
+        function removeProd() {
+            var inC = event.target.parentNode.parentNode;
+//                inCart = inC.querySelector('.div');
+            inC.remove();
             sumCartObj();
             sumPriceCart();
         }
 
         function sumCartObj() {
-            var sum = document.querySelectorAll('.content-cart .inCart');
-            if (2 > sum.length > 0) {
-                contentEmpty.innerHTML = sum.length + " Об'єкт";
-            } else if (5 > sum.length) {
-                contentEmpty.innerHTML = sum.length + " Об'єкти";
-            } else if (sum.length >= 5) {
-                contentEmpty.innerHTML = sum.length + " Об'єктів";
-            } else {
+            
+//            переглянути тут
+            var sum = d.querySelectorAll('.content-cart .inCart');
+//                countN = contentCart.querySelector('.inCart .counterN'),
+//                objCount = +countN.textContent;
+//            var xxx = sum.length + objCount;
+            var xxx = sum.length;
+            
+            if (xxx == 0) {
                 contentEmpty.innerHTML = "Пусто!";
+            } else if (2 > xxx > 0) {
+                contentEmpty.innerHTML = sum.length  + " Об'єкт";
+            } else if (5 > xxx) {
+                contentEmpty.innerHTML = sum.length + " Об'єкти";
+            } else if (xxx >= 5) {
+                contentEmpty.innerHTML = sum.length + " Об'єктів";
+//                contentEmpty.innerHTML = sum.length +objCount+ " Об'єктів";
             }
         }
 
@@ -130,9 +268,9 @@
             if (sumPrice.length > 0) {
                 var sum = 0;
                 for (var i = 0; i < sumPrice.length; i++) {
-                    sumPriceA = sumPrice[i].innerHTML.slice(0, 3);
-                    sum = sum + +sumPriceA;
-                    //                    console.log( sum );
+                    var sumPriceA = sumPrice[i].innerHTML.slice(0, -1);
+                      sum = sum + +sumPriceA;
+//                                        console.log( sum );
                     allPrice.innerHTML = sum + '$';
                 }
             } else {
@@ -141,23 +279,21 @@
             }
         }
 
-//        не працює
-//        function checkingProruct() {
-//            var check = document.querySelectorAll('.content-cart .inCart');
-//            for (var i = 0; i < check.length; i++) {
-//                var idName = check[i].innerHTML;
-//                if (idName == idName) {
-//                    console.log( check[i] );
-//                    console.log( 'одинкакові' );
-//                    console.log( idName );
-////                    check[i].style.display = 'none';
-//                } else if (idName !== idName){
-//                console.log('різні обєкти')
-//                }
-//            }
-//        }
-
-        
+        ////                не працює
+        //                function checkingProruct() {
+        //                    var check = d.querySelectorAll('.content-cart .inCart ');
+        //                    for (var i = 0; i < check.length; i++) {
+        //                        var idName = check[i].textContent;
+        //                        if (idName[i] == idName) {
+        //                            console.log( check[i] );
+        //                            console.log( 'одинкакові' );
+        //                            console.log( idName );
+        //        //                    check[i].style.display = 'none';
+        //                        } else if (idName !== idName[i]){
+        //                        console.log('різні обєкти')
+        //                        }
+        //                    }
+        //                }
 
     </script>
 
