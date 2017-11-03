@@ -144,27 +144,39 @@
 
             //            відсліткуваи клік
             //                console.log(event.target);
+//
+//            if (ProductTitle.textContent == ProductTitle.textContent) {
+//
+//                var count = 0,
+//                    countNum = contentCart.querySelector('.counterN'),
+//                    inCartProd = ProductTitle.textContent;
+//                
+//                for (var i = 0; i < countNum.length; i++) {
+//                    count = Number(countNum.textContent) + 1;
+////                    count +=1;
+//                countNum.innerHTML = count;
+////            console.log(count)
+////            console.log(counterNum)
+//                }
+//            }
+////                console.log(count)
+//            console.log(countNum.textContent);
+//                
+//                   var count = contentCart.querySelectorAll('.counterN'),
+//                countN = 0;
+//
+//            for (var i = 0; i < count.length; i++) {
+//                countN += Number(count[i].textContent);
+//            }
+                
+//                console.log(counterNum.innerHTML);
+//                console.log(ProductTitle.textContent + " " + +counterNum + "+1");
+//            }
 
-            //            if (ProductTitle.textContent == "Style 1") {
-            //                var firtsObj = ProductTitle.textContent;
-            //                
-            //                var count = 0;
-            ////                for  (var i=0; i
-            ////                if(counterNum.textContent + count ) {
-            //                    
-            //                count +=1;
-            //                counterNum.innerHTML = count;
-            ////                               }
-            //                console.log(counterNum.innerHTML);
-            //                console.log(ProductTitle.textContent + " " + +counterNum + "+1");
-            //            }
-
-            //                        checkingProruct();
-
-
-            sumCartObj();
-            sumPriceCart();
-        }
+                    //                        checkingProruct();
+                    sumCartObj();
+                    sumPriceCart();
+                }
 
 
         function bnPlus(event) {
@@ -187,8 +199,8 @@
 
                 sumAll = +sumAll + +priceOne;
                 pricePr.innerHTML = sumAll + '$';
-                 sumCartObj();
-            sumPriceCart();
+                sumCartObj();
+                sumPriceCart();
             }
 
             buttonMinus.onclick = function() {
@@ -199,25 +211,12 @@
                 }
                 sumAll = +sumAll - +priceOne;
                 pricePr.innerHTML = sumAll + '$';
-                 sumCartObj();
-            sumPriceCart();
+
+
+                sumCartObj();
+                sumPriceCart();
             }
 
-//        var allItem = allItem + +item,
-//            allObjCart = contentEmpty.length;
-//
-//                        console.log(allObjCart);
-//                        console.log(item);
-//                        console.log(allItem);
-//            //            console.log(sumPriceA);
-            //            console.log(inC);
-            //            console.log(inC.children);
-            //            console.log(namePr);
-            //                        console.log(pricePr);
-            //            console.log(count);
-
-            sumCartObj();
-            sumPriceCart();
         }
 
         //        працює функція
@@ -234,66 +233,80 @@
 
         function removeProd() {
             var inC = event.target.parentNode.parentNode;
-//                inCart = inC.querySelector('.div');
+            //                inCart = inC.querySelector('.div');
             inC.remove();
             sumCartObj();
             sumPriceCart();
         }
 
         function sumCartObj() {
+            //            переглянути тут
+            //           var sum = d.querySelectorAll('.content-cart .inCart'),
+            //               xxx = sum.length;
+            //                  if (xxx == 0) {
+            //                            contentEmpty.innerHTML = "Пусто!";
+            //                        } else if (2 > xxx > 0) {
+            //                            contentEmpty.innerHTML = xxx  + " Об'єкт";
+            //                        } else if (5 > xxx) {
+            //                            contentEmpty.innerHTML = xxx + " Об'єкти";
+            //                        } else if (xxx >= 5) {
+            //                            contentEmpty.innerHTML = xxx + " Об'єктів";
+            //                        }
+            //            вище працює
+
+            var count = contentCart.querySelectorAll('.counterN'),
+                countN = 0;
+
+            for (var i = 0; i < count.length; i++) {
+                countN += Number(count[i].textContent);
+            }
             
-//            переглянути тут
-            var sum = d.querySelectorAll('.content-cart .inCart');
-//                countN = contentCart.querySelector('.inCart .counterN'),
-//                objCount = +countN.textContent;
-//            var xxx = sum.length + objCount;
-            var xxx = sum.length;
-            
-            if (xxx == 0) {
+            console.log(countN);
+            if (countN == 0) {
                 contentEmpty.innerHTML = "Пусто!";
-            } else if (2 > xxx > 0) {
-                contentEmpty.innerHTML = sum.length  + " Об'єкт";
-            } else if (5 > xxx) {
-                contentEmpty.innerHTML = sum.length + " Об'єкти";
-            } else if (xxx >= 5) {
-                contentEmpty.innerHTML = sum.length + " Об'єктів";
-//                contentEmpty.innerHTML = sum.length +objCount+ " Об'єктів";
+            } else if (2 > countN > 0) {
+                contentEmpty.innerHTML = countN + " Об'єкт";
+            } else if (5 > countN) {
+                contentEmpty.innerHTML = countN + " Об'єкти";
+            } else if (countN >= 5) {
+                contentEmpty.innerHTML = countN + " Об'єктів";
             }
+
         }
 
-        function sumPriceCart() {
-            var sumPrice = contentCart.querySelectorAll('.content-cart .sumPrice'),
-                allPrice = contentCart.querySelector('.allPrice');
+                function sumPriceCart() {
+                    var sumPrice = contentCart.querySelectorAll('.content-cart .sumPrice'),
+                        allPrice = contentCart.querySelector('.allPrice');
 
-            if (sumPrice.length > 0) {
-                var sum = 0;
-                for (var i = 0; i < sumPrice.length; i++) {
-                    var sumPriceA = sumPrice[i].innerHTML.slice(0, -1);
-                      sum = sum + +sumPriceA;
-//                                        console.log( sum );
-                    allPrice.innerHTML = sum + '$';
+                    if (sumPrice.length > 0) {
+                        var sum = 0;
+                        for (var i = 0; i < sumPrice.length; i++) {
+                            var sumPriceA = sumPrice[i].innerHTML.slice(0, -1);
+                            sum = sum + +sumPriceA;
+                            //                                        console.log( sum );
+                            allPrice.innerHTML = sum + '$';
+                        }
+                    } else {
+                        console.log("щось пішло не так")
+                        allPrice.innerHTML = '0$';
+                    }
                 }
-            } else {
-                console.log("щось пішло не так")
-                allPrice.innerHTML = '0$';
-            }
-        }
 
-        ////                не працює
-        //                function checkingProruct() {
-        //                    var check = d.querySelectorAll('.content-cart .inCart ');
-        //                    for (var i = 0; i < check.length; i++) {
-        //                        var idName = check[i].textContent;
-        //                        if (idName[i] == idName) {
-        //                            console.log( check[i] );
-        //                            console.log( 'одинкакові' );
-        //                            console.log( idName );
-        //        //                    check[i].style.display = 'none';
-        //                        } else if (idName !== idName[i]){
-        //                        console.log('різні обєкти')
-        //                        }
-        //                    }
-        //                }
+                ////                не працює
+                //                function checkingProruct() {
+                //                    var check = d.querySelectorAll('.content-cart .inCart ');
+                //                    for (var i = 0; i < check.length; i++) {
+                //                        var idName = check[i].textContent;
+                //                        if (idName[i] == idName) {
+                //                            console.log( check[i] );
+                //                            console.log( 'одинкакові' );
+                //                            console.log( idName );
+                //        //                    check[i].style.display = 'none';
+                //                        } else if (idName !== idName[i]){
+                //                        console.log('різні обєкти')
+                //                        }
+                //                    }
+                //                }
 
     </script>
 
